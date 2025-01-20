@@ -1,0 +1,29 @@
+mode: dev
+log:
+  level: info
+server:
+  serverName: "dtm-test-service"
+  httpPort: 8008
+  grpcPort: 5008
+gorm:
+  url: "root:root@tcp(192.168.80.128:3306)/dtm_test?charset=utf8&parseTime=True&loc=Local"
+redis:
+  single: false #false就代表使用集群配置
+  singleUrl: 192.168.80.128:6378
+  clusterUrl:
+    - 192.168.80.128:6379
+    - 192.168.80.128:6380
+    - 192.168.80.128:6381
+  password: ""
+etcd:
+  url:
+    - 192.168.80.128:2379
+    - 192.168.80.128:2479
+    - 192.168.80.128:2579
+dtmConf:
+  Driver: "mysql"
+  Host: "192.168.80.128"
+  Port: 3306
+  User: "root"
+  Password: "root"
+  Db: "dtm_test"

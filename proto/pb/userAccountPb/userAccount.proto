@@ -1,0 +1,46 @@
+syntax = "proto3";
+option go_package = "./pb/userAccountPb;userAccountPb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "validate/validate.proto";
+
+message UserAccountTransRequest{
+  int32  Uid = 1;
+  int32  Tid=2;
+  double Amount = 3;
+  string TransInResult = 4;
+  string TransOutResult = 5;
+}
+
+message UserAccountUpdateRequest{
+  int32  Uid = 1;
+  double Amount = 2;
+  string TransInResult = 3;
+  string TransOutResult = 4;
+}
+
+
+service UserAccount{
+  rpc UpdateAccount(UserAccountTransRequest) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      put: "/userAccount/updateAccount"
+      body: "*"
+    };
+  }
+
+  rpc TransOutXa (UserAccountUpdateRequest) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "/userAccount/transOutXa"
+      body: "*"
+    };
+  }
+
+  rpc TransInXa (UserAccountUpdateRequest) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      post: "/userAccount/TransInXa"
+      body: "*"
+    };
+  }
+}
