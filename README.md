@@ -46,6 +46,18 @@ values (1, 1000),(2, 1000);
 
 
 
+ **需要注意的点**
+
+因为dtm没有把事务提交，导致行锁没有被释放，所以下次再测试，就无法写入了
+
+必须要手动的在数据库查询xa事务，然后手动让它rollback结束事务，不然下次就无法测试
+
+```
+xa recover;
+xa rollback 'EhrabRuqDADQKjNR389Ut3-02';
+xa rollback 'EhrabRuqDADQKjNR389Ut3-01';
+```
+
 
 
 

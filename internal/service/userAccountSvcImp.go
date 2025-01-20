@@ -1,6 +1,7 @@
 package service
 
 import (
+	"database/sql"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
 	"kraots-xa/internal/dao"

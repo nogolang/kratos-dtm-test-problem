@@ -104,6 +104,7 @@ func (receiver *UserAccountControl) TransOutXa(ctx context.Context, request *use
 		//转出操作
 		request.Amount = -request.Amount
 		//这里用自己的db对象，但是需要封装一下dtm提供的db
+		//@TODO 这里是没问题的，用dtm提供的db也一样
 		gormDb := dtmUtils.GetGormDbFromDtmConn(db, receiver.Logger)
 		return receiver.UserAccountSvc.UpdateAccount(gormDb, request)
 	})

@@ -23,5 +23,6 @@ func (receiver *UserAccountDaoImp) UpdateAccount(db *gorm.DB,
 	sql := `
 		update dtm_test.user_account set balance = balance + ? where user_id = ?
 	`
+
 	return db.Exec(sql, request.Amount, request.Uid).Error
 }
