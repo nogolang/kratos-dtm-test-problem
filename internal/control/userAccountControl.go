@@ -46,11 +46,11 @@ func NewUserAccountControl(grpcServer *grpc.Server,
 // @TODO 这个有问题，但是dtm是可以和这个服务通信的，并且已经调用了分支事务，但是提交的时候dtm本身却报错
 var baseUrl = "discovery:///dtm-test-service"
 
-// 而dtm的本身的地址，也可以通过服务发现获取，前提dtm已经注册到etcd中了
-var DtmServer = "discovery:///dtmservice" //这个没问题
-
-// grpc连接则用这种，无需加任何前缀
+//当地址写死的时候，一切都没问题
 //var baseUrl = "192.168.80.1:5008"
+
+// dtm的服务发现没有问题，因为只要baseUrl(业务服务)写死，这里写死和不写死，结果都会成功
+var DtmServer = "discovery:///dtmservice" //这个没问题
 
 func (receiver *UserAccountControl) UpdateAccount(ctx context.Context, request *userAccountPb.UserAccountTransRequest) (*emptypb.Empty, error) {
 	//调用各个分支事务
